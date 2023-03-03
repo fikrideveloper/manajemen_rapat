@@ -71,7 +71,7 @@
                 {{-- <h5 class="card-title">Form Tambah Data Rapat</h5> --}}
     
                 <!-- General Form Elements -->
-                <form action="/proses_register" method="POST">
+                <form action="/create_register" method="POST">
                   @csrf
                   <div class="row mb-3 mt-4">
                     <label for="inputText" class="col-sm-5 col-form-label">Nama</label>
