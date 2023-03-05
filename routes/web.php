@@ -27,6 +27,9 @@ Route::post('/postlogin','LoginController@postlogin')->name('postloginn');
 
 Route::get('/logout','LoginController@logout')->name('logout');
 
+Route::get('/register_akun', 'LoginController@register');
+
+Route::post('/create_register', 'LoginController@create');
 
 // middleware disini berfungsi untuk mencegah user masuk ke web sebelum login
 Route::group(['middleware' => ['auth']], function(){
