@@ -21,12 +21,12 @@
             <h5 class="card-title">Form Tambah Data Rapat</h5>
 
             <!-- General Form Elements -->
-            <form action="/create_rapat" method="POST">
+            <form action="/create_rapat" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Nama Rapat</label>
                 <div class="col-sm-10">
-                  <input type="text" required name="nama" class="form-control @error('nama') is-invalid @enderror" autofocus placeholder="Masukkan nama rapat"  >
+                  <input type="text" value="{{ old('nama') }}" name="nama" class="form-control @error('nama') is-invalid @enderror" autofocus placeholder="Masukkan nama rapat"  >
                   @error('nama')
                       <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -35,7 +35,7 @@
               <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Rapat</label>
                 <div class="col-sm-10">
-                  <input type="date" required name="tanggal" class="form-control @error('tanggal') is-invalid @enderror">
+                  <input type="date" value="{{ old('tanggal') }}" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror">
                   @error('tanggal')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -44,7 +44,7 @@
               <div class="row mb-3">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Waktu Rapat</label>
                 <div class="col-sm-10">
-                  <input type="time" required name="waktu" class="form-control @error('waktu') is-invalid @enderror">
+                  <input type="time" value="{{ old('waktu') }}" name="waktu" class="form-control @error('waktu') is-invalid @enderror">
                   @error('waktu')
                       <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -54,11 +54,12 @@
                 <label class="col-sm-2 col-form-label">Kategori</label>
                 <div class="col-sm-10">
                   <select class="form-select @error('kategori') is-invalid @enderror" name="kategori" aria-label="Default select example">
-                    <option selected>- Pilih Jenis Kategori Rapat -</option>
-                    <option value="Rapat Mingguan">Rapat Mingguan</option>
-                    <option value="Rapat Bulanan">Rapat Bulanan</option>
-                    <option value="Rapat Tahunan  ">Rapat Tahunan</option>
+                    {{-- <option >- Pilih Jenis Kategori Rapat -</option> --}}
+                    <option value="Rapat Mingguan" {{ old('kategori') == 'Rapat Mingguan' ? 'selected' : '' }}>Rapat Mingguan</option>
+                    <option value="Rapat Bulanan" {{ old('kategori') == 'Rapat Bulanan' ? 'selected' : '' }}>Rapat Bulanan</option>
+                    <option value="Rapat Tahunan " {{ old('kategori') == 'Rapat Tahunan' ? 'selected' : '' }}>Rapat Tahunan</option>
 
+                    
                     @error('kategori')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -74,8 +75,11 @@
               <div class="row mb-3">
                 <label for="inputNumber" class="col-sm-2 col-form-label">Dokumentasi</label>
                 <div class="col-sm-10">
-                  <input class="form-control" name="dokumentasi" type="file" id="formFile">
+                  <input class="form-control @error('dokumentasi') is-invalid @enderror" name="dokumentasi" value="{{ old('dokumentasi') }}" type="file" id="formFile">
                   <label for="" class="text-danger small">*Opsional</label>
+                  @error('dokumentasi')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                 </div>
               </div>
               
@@ -95,7 +99,7 @@
               <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Hasil Rapat</label>
                 <div class="col-sm-10">
-                  <textarea required class="form-control @error('hasil') is-invalid @enderror" name="hasil" style="height: 200px;"></textarea>
+                  <textarea name="hasil" class="form-control @error('hasil') is-invalid @enderror" style="" id="" cols="30" rows="10">{{ old('hasil') }}</textarea>
                   @error('hasil')
                       <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
