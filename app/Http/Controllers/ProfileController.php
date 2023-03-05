@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class ProfileController extends Controller
@@ -41,7 +43,9 @@ class ProfileController extends Controller
         // return dd($edit);
 
         \DB::table('users')->where('id',$request->idUpdate)->update($edit);
-        return redirect()->back()->with(['success'=> 'Update Profil  berhasil !!']);
+
+        Alert::success('Update Profil Berhasil !!');
+        return redirect()->back();
 
     }
 }
