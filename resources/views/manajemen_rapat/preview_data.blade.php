@@ -14,7 +14,7 @@
 @section('content')
 <section class="section">
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-12">
 
             <div class="card">
               <div class="card-body">
@@ -44,7 +44,7 @@
                       {{-- Date H:i ini untuk mengatur format waktu urut jam ke menit dan tidak perlu detik --}}
                       <td>{{ date('H:i', strtotime($data->waktu_rapat)) }} WIB</td>
                       <td>{{ $data->kategori }}</td>
-                      <td><a href="">{{ Str::limit($data->hasil_rapat,15, '...') }}</a></td>
+                      <td><a href="/view_rapat/{{ $data->id }}">{{ Str::limit($data->hasil_rapat,15, '...') }}</a></td>
                       <td><a class="btn btn-warning" href="#"><i class=" bi bi-pencil-square"></i></a> <a class="btn btn-danger" id="#delete" onclick="return confirm('Yakin ingin MENGHAPUS?');"  href="/hapus_data_rapat/{{ $data->id }}"><i class="bi bi-trash-fill"></i></a></td>
                     </tr>
                     @endforeach
