@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use App\Rapat;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,6 +15,15 @@ class  RapatController extends Controller
         // $data_rapat = Rapat::all();
         return view('manajemen_rapat.preview_data',[
             'data_rapat' => Rapat::paginate(5)
+        ]);
+    }
+
+    public function view($id){
+
+        // $data_rapat = Rapat::all();
+        return view('manajemen_rapat.view',[
+            'data_rapat' => Rapat::where('id',$id)->first()
+
         ]);
     }
 
@@ -43,16 +53,34 @@ class  RapatController extends Controller
             'hasil.required' => 'Hasil Rapat harus diisi',
         ]);
 
-        $file = $request->file('dokumentasi');
-        $ambil_nama = date('d-m-Y');
+        
 
-        $angka_acak = rand(1,999)."_".$file->getClientOriginalName();
+        
+        // $tujuan_uploud = 'image';
 
-        $nama_file = $ambil_nama."_".$angka_acak;
-        $tujuan_uploud = 'image';
-        $file->move(public_path($tujuan_uploud,$nama_file));
+        // Jika user menambahkan gambar maka segera proses hasil inputannya
+        if (request()->file('dokumentasi')){
 
-        $tambah = [
+            $gambar = $request->file('dokumentasi');
+            $tanggal = date('d-m-Y');
+            $angka_acak = rand(1,999);
+
+            $nama_ambil = $gambar->getClientOriginalName();
+
+            $nama_file = $tanggal."_".$angka_acak."_".$nama_ambil;    
+
+            $gambar->move('data_gambar/', $nama_file);
+
+        } else {
+
+            // jika user tidak menambahkan gambar maka perbolehkan untuk menambah data
+            $gambar = null;
+            $nama_file = null;
+        }
+        
+
+        // ambil semua data dari request (permintaan) dari user 
+        $tambah = [ 
             'nama_rapat' => $request->nama,
             'tanggal_rapat' => $request->tanggal,
             'waktu_rapat' => $request->waktu,
@@ -62,32 +90,29 @@ class  RapatController extends Controller
         ];
 
 
+        // kirim hasil inputan user ke database 
         Rapat::create($tambah);
-        // Rapat::create([
-        //     'nama_rapat' => $request->nama,
-        //     'tanggal_rapat' => $request->tanggal,
-        //     'waktu_rapat'=> $request->waktu,
-        //     'kategori' => $request->kategori,
-        //     'gambar' => $request->dokumentasi,
-        //     'hasil_rapat' => $request->hasil,
-        // ]);
-        // dd($request->all());
-
         return redirect('/preview_rapat')->with('success', 'Data berhasil ditambahkan !!');
     }
 
     public function delete($id){
 
-        $hapus = Rapat::findOrFail($id);
-        $hapus->delete();
+        // $hapus = Rapat::findOrFail($id);
+        $hapus = Rapat::where('id',$id)->first();
+        // hapus file dengan mengambil modal File
+        File::delete('data_gambar/'.$hapus->gambar);
 
-        if ($hapus) {
-
+        // hapus data
+        $hapus_gambar= Rapat::where('id',$id)->delete();
+        
+        // Jika berhasil terhapus maka tampilkan alert
+        if ($hapus_gambar) {
             toast('Data Berhasil Dihapus','success');
             // Alert::toast('Toast Message', 'Toast Type');
             return redirect('/preview_rapat');
 
         }
+        
         
     }
 
