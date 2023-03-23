@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 03 Mar 2023 pada 10.15
--- Versi server: 5.7.33
--- Versi PHP: 7.4.19
+-- Generation Time: Mar 23, 2023 at 12:55 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -39,20 +39,33 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `kode_kategori` bigint(20) NOT NULL,
   `kategori` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `kode_kategori`, `kategori`, `created_at`, `updated_at`) VALUES
+(6, 1, 'Rapat Bulanan', '2023-03-22 00:38:34', '2023-03-22 00:38:34'),
+(7, 2, 'Rapat Tahunan', '2023-03-22 00:38:46', '2023-03-22 00:38:46'),
+(8, 3, 'Rapat Mingguan', '2023-03-22 00:39:08', '2023-03-22 00:39:08'),
+(9, 4, 'Diskusi', '2023-03-22 00:50:30', '2023-03-22 00:50:30'),
+(10, 6, 'coba', '2023-03-22 03:22:50', '2023-03-22 03:22:50'),
+(11, 7, 'sembarang', '2023-03-22 03:23:06', '2023-03-22 03:23:06');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -62,19 +75,21 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2023_02_27_040332_create_rapat_table', 2),
-(5, '2023_02_28_144233_create_kategori_table', 3);
+(13, '2014_10_12_000000_create_users_table', 1),
+(14, '2019_08_19_000000_create_failed_jobs_table', 1),
+(15, '2023_02_27_040332_create_rapat_table', 1),
+(16, '2023_02_28_144233_create_kategori_table', 1),
+(17, '2023_03_17_133901_add_image_to_users_table', 2),
+(19, '2023_03_18_024011_create_kategori_table', 3);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rapat`
+-- Table structure for table `rapat`
 --
 
 CREATE TABLE `rapat` (
@@ -84,28 +99,33 @@ CREATE TABLE `rapat` (
   `waktu_rapat` time NOT NULL,
   `kategori` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hasil_rapat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hasil_rapat` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `rapat`
+-- Dumping data for table `rapat`
 --
 
 INSERT INTO `rapat` (`id`, `nama_rapat`, `tanggal_rapat`, `waktu_rapat`, `kategori`, `gambar`, `hasil_rapat`, `created_at`, `updated_at`) VALUES
-(1, 'Sosialisasi Kantor', '2023-02-22', '17:12:18', 'Rapat Bulanan', 'Kantor.jpg', 'Berikut hasilnya', NULL, NULL),
-(15, 'Rapat Manajemen Kantor', '2023-02-23', '08:30:00', 'Rapat Bulanan', NULL, 'Berikut adalah hasil rapat pada hari ini', '2023-02-28 08:06:10', '2023-02-28 08:06:10');
+(28, 'dawdaw', '2023-03-18', '09:17:00', 'Rapat Bulanan', NULL, 'awdwa', '2023-03-17 18:17:39', '2023-03-17 23:39:41'),
+(29, 'dawdwad', '2023-03-18', '09:17:00', 'Rapat Bulanan', NULL, 'dwadw', '2023-03-17 18:17:49', '2023-03-17 18:17:49'),
+(30, 'awdawd', '2023-03-25', '09:17:00', 'Rapat Bulanan', NULL, 'dawdaw', '2023-03-17 18:17:59', '2023-03-17 18:17:59'),
+(31, 'dawdawd', '2023-03-25', '09:18:00', 'Rapat Bulanan', NULL, 'dawdawd', '2023-03-17 18:18:10', '2023-03-17 18:18:10'),
+(32, 'kepo amat se', '2023-03-25', '09:18:00', 'Rapat Bulanan', '(NULL)', 'sembarang wes', '2023-03-17 18:18:26', '2023-03-21 06:25:34'),
+(34, 'coba', '2023-04-07', '15:05:00', 'Rapat Bulanan', NULL, 'dawdaw', '2023-03-18 00:05:51', '2023-03-18 00:05:51');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -116,82 +136,82 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `level`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Fikri Zumar', 'Administrator', 'fikrizumar@gmail.com', NULL, '$2y$10$G8m4sbEmLAPXA9gIQDPKb.64VO3SmmA3CFAC1QEgLR6fBg7jNtHXC', 'fb5tOdldLfaeGYi7vZWVWNiGAengDbRwAxyhKVH5WWeuR38oVdYMm4maVeHc', '2023-02-19 18:53:34', '2023-02-19 18:53:34'),
-(2, 'Admin', 'Administrator', 'admin@gmail.com', NULL, '$2y$10$q0.JumPmEKTBopVbgs8OPOAA3I5qZX8u0SHGQNda6.7HMh2Mdk/IS', '5rDs1dJ7luUbqkKmFKDc2mc5rKWqISU1W1GY0wNqaRcF0wiRrDbDkpK3odZl', '2023-02-21 00:03:30', '2023-02-21 00:03:30'),
-(9, 'Zumar', NULL, 'zumar@gmail.com', NULL, '$2y$10$3ZAmbdH7NU0K10/h4zWCw.8TrS/2jWetIeVthnZIhLdqMOiYvX0wi', NULL, '2023-03-03 01:48:44', '2023-03-03 01:48:44');
+INSERT INTO `users` (`id`, `name`, `image`, `level`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '18-03-2023_69_logo smk cerme new.png', 'Administrator', 'admin@gmail.com', NULL, '$2y$10$V6htVisM6iVJ2OQ6bCmnK.j0YZhTgOC8UsXaGEtSSaM.K27JiwbQy', NULL, '2023-03-04 17:48:38', '2023-03-21 17:09:19'),
+(2, 'Fikri Zumar', '22-03-2023_931_fotoku.jpg', 'Administrator', 'fikrizumar@gmail.com', NULL, '$2y$10$Y45.Xb81NPf4Cnv3peX31.cnQOcquM3yfMgdmma7Gzlh9bg3JG2Re', NULL, '2023-03-04 17:54:20', '2023-03-22 00:10:49'),
+(3, 'Zumar', NULL, NULL, 'zumar@gmail.com', NULL, '$2y$10$CrAFT/u5t0jCrsUDByrXq.RJ0.qq0E6SuGDsKycyEWfRb83kvbp7G', NULL, '2023-03-04 20:00:59', '2023-03-04 20:00:59');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `rapat`
+-- Indexes for table `rapat`
 --
 ALTER TABLE `rapat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `rapat`
+-- AUTO_INCREMENT for table `rapat`
 --
 ALTER TABLE `rapat`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
