@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kategori;
 use App\Rapat;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,16 @@ class DashboardController extends Controller
     //
     public function index(){
         
-
-        // $total_rapat = Rapat::get()->count();
+        // Menampilkan jumlah data Rapat ke Dashboard
         $total_rapat = Rapat::count();
 
-        return view('dashboard', compact('total_rapat'));
+        // Menampilkan jumlah data Kategori ke Dashboard
+        $total_kategori = Kategori::count();
 
-        // dd($total_rapat);
+        // Kirim hasil jumlah data Rapat & Kategori ke Dashboard Page
+        return view('dashboard',[
+            'total_rapat' => $total_rapat,
+            'total_kategori' => $total_kategori
+        ]);
     }
 }
