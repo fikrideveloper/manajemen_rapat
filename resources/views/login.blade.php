@@ -60,7 +60,7 @@
                           
                       @endif
     
-                      <form class="row g-3 needs-validation"action="{{ route('postloginn') }}" method="POST">
+                      <form class="row g-3 needs-validation" action="/postlogin" method="POST">
                         @csrf
 
                         <div class="col-12">
