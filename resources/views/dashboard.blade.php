@@ -78,8 +78,8 @@
                       <i class="bi bi-menu-button-wide"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <a class="small fw-bold " style="color: #ff771d;" href="">More Info</a>
+                      <h6>{{ $total_kategori }}</h6>
+                      <a class="small fw-bold " style="color: #ff771d;" href="/kategori_rapat">More Info</a>
 
                     </div>
                   </div>
