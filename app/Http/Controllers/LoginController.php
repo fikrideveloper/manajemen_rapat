@@ -22,7 +22,7 @@ class LoginController extends Controller
             return redirect('dashboard');
         
         }
-        Alert::error('Username / Password Salah !!',);
+        Alert::error('Username / Password Salah !!');
         return redirect('login');
         
 
