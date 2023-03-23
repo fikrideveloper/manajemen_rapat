@@ -19,7 +19,7 @@ class CreateRapatTable extends Migration
             $table->date('tanggal_rapat');
             $table->time('waktu_rapat');
             $table->string('kategori');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->string('hasil_rapat');
             $table->timestamps();
         });
