@@ -18,7 +18,7 @@
 
               {{-- Jika User memasukkan gambar profile maka tampilkan gambarnya --}}
               @if (Auth::user()->image)
-                <img src="{{ asset('data_gambar/profile_image/'.Auth::user()->image) }}" alt="Profile" class="rounded-circle mb-1">    
+                <img src="{{ asset('data_gambar/profile_image/'.Auth::user()->image) }}" alt="{{ Auth::user()->image }}" class="rounded-circle mb-1">    
 
               {{-- Jika User tidak memasukkan gambar profile maka tampilkan gambar user vector --}}
               @else
