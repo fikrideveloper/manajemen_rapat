@@ -14,10 +14,10 @@ class  RapatController extends Controller
     //
     public function index(){
 
-
+        $data_semua = Rapat::paginate(5);
         $total_rapat = Rapat::count();
         return view('manajemen_rapat.preview_data',[
-            'data_rapat' => Rapat::paginate(5),
+            'data_rapat' => $data_semua,
             'total_rapat' => $total_rapat
         ]);
     }
@@ -120,13 +120,14 @@ class  RapatController extends Controller
             
         ];
 
-        // return dd($edit);
-
         $rapat = Rapat::where('id',$id)->update($edit);
-        // dd($rapat);
 
-        Alert::success('Update Rapat Berhasil !!');
-        return redirect('/preview_rapat');
+        if ($rapat) {
+            toast('Update Rapat Berhasil !!','success');
+            // Alert::success('Update Rapat Berhasil !!');
+            return redirect('/preview_rapat');
+        }
+        
     }
 
 
@@ -201,8 +202,12 @@ class  RapatController extends Controller
 
 
         // kirim hasil inputan user ke database 
-        Rapat::create($tambah);
-        return redirect('/preview_rapat')->with('success', 'Data berhasil ditambahkan !!');
+        $respon = Rapat::create($tambah);
+        if ($respon) {
+            toast('Data Berhasil ditambahkan!!', 'success');
+            return redirect('/preview_rapat');
+        }
+        
     }
 
     public function delete($id){
