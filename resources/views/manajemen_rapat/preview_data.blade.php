@@ -32,7 +32,7 @@
                   <thead>
                     <tr>
                       {{-- <th scope="col"></th> --}}
-                      <th scope="col">No.</th>
+                      {{-- <th scope="col">No.</th> --}}
                       <th scope="col">Nama Rapat</th>
                       <th scope="col">Tanggal</th>
                       <th scope="col">Waktu</th>
@@ -46,7 +46,7 @@
 
                     @foreach ($data_rapat as $data)
                     <tr>
-                      <td>{{ $no }}</td>
+                      {{-- <td>{{ $no }}</td> --}}
                       <td>{{ $data->nama_rapat }}</td>
 
                       {{-- Date disini untuk mengatur format tanggal dari urut hari ke tahun --}}

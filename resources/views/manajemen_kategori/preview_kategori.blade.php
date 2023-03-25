@@ -44,7 +44,7 @@
                     <tr>
                       <td>{{ $kategori->kode_kategori }}</td>
                       <td>{{ $kategori->kategori }}</td>
-                      <td><a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a> <a href="/hapus_kategori/{{ $kategori->id }}" class="btn btn-danger" onclick="return confirm('Yakin ingin MENGHAPUS?');"><i class="bi bi-trash-fill"></i></a></td>
+                      <td><a href="/edit_kategori/{{ $kategori->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a> <a href="/hapus_kategori/{{ $kategori->id }}" class="btn btn-danger" onclick="return confirm('Yakin ingin MENGHAPUS?');"><i class="bi bi-trash-fill"></i></a></td>
                     </tr>
                     @endforeach
                   </tbody>

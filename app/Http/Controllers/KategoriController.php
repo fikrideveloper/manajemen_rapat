@@ -16,6 +16,45 @@ class KategoriController extends Controller
         ]);
     }
 
+    public function edit($id){
+        // $ambil_kategori = Kategori::where('id',$id)->first();
+        return view('manajemen_kategori.edit_kategori',[
+            'ambil_kategori'=> Kategori::where('id',$id)->first()
+        ]);
+
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'kode' => 'required|numeric',
+            'nama_kategori' =>'required',
+
+
+        ],[
+            'kode.required' => 'Kode harus diisi',
+            'kode.numeric' => 'Kode harus berisikan nomor',
+            'nama_kategori.required' => 'Kategori harus diisi'
+        ]);
+
+        $update = [
+            'kode_kategori' => $request->kode,
+            'kategori' => $request->nama_kategori,
+        ];
+
+        $proses = Kategori::where('id', $id)->update($update);
+
+        if ($proses) {
+
+            toast('Kategori berhasil diedit !!','success');
+
+            return redirect('/kategori_rapat');
+
+        } else{
+            toast('Kategori gagal diedit !!','error');
+
+        }
+    }
+
     // Memproses fungsi tambah data ke database
     public function create_kategori(Request $request){
         $request->validate([
@@ -33,8 +72,12 @@ class KategoriController extends Controller
             'kategori' => $request->nama_kategori
         ];
 
-        Kategori::create($tambah);
-        return redirect('/kategori_rapat');
+        $proses_nambah = Kategori::create($tambah);
+        if ($proses_nambah) {
+            toast('Kategori telah ditambahkan!!','success');
+            return redirect('/kategori_rapat');
+        }
+        
 
     }
 

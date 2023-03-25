@@ -73,6 +73,10 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/kategori_rapat', 'KategoriController@index');
 
+    Route::get('/edit_kategori/{id}', 'KategoriController@edit');
+
+    Route::post('/update_kategori/{id}', 'KategoriController@update');
+
     Route::get('/hapus_kategori/{id}', 'KategoriController@delete');
     
     // Manajemen Kategori

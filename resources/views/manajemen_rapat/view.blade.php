@@ -33,7 +33,7 @@
 
                 {{-- Jika user menginputkan gambar, maka tampilkan datanya --}}
                 @if ($data_rapat->gambar)
-                <img class="img-fluid mb-3 rounded shadow p-3 mb-3 " style="max-height: 300px" src="{{ asset('/data_gambar/'.$data_rapat->gambar) }}">    
+                <img class="img-fluid mb-3 rounded shadow p-3 mb-3 " style="max-height: 300px" src="{{ asset('/data_gambar/'.$data_rapat->gambar) }}" alt="{{ $data_rapat->gambar }}">    
 
                 {{-- Jika user tidak menginputkan gambar, maka tampilkan gambar vector rapat --}}
                 @else
